@@ -12,3 +12,11 @@ model User {
   name      String?
   createdAt DateTime @default(now())
 }
+
+model LlmLog {
+  id     Int    @id @default(autoincrement())
+  input  String
+  output String
+
+  @@map("llm_logs")
+}
