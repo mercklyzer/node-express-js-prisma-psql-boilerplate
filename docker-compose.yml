@@ -17,20 +17,5 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
-    build: .
-    container_name: node-express-app
-    restart: unless-stopped
-    environment:
-      PORT: 3000
-      DATABASE_URL: postgresql://${POSTGRES_USER:-app_user}:${POSTGRES_PASSWORD:-app_password}@postgres:5432/${POSTGRES_DB:-app_db}?schema=public
-    ports:
-      - "${APP_PORT:-3000}:3000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    profiles:
-      - app
-
 volumes:
   postgres_data:
